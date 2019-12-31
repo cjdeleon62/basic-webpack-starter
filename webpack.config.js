@@ -34,13 +34,19 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.pug$/i,
+        use: {
+          loader: 'pug-loader',
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Basic Webpack Starter',
       filename: 'index.html',
-      template: './src/index.html',
+      template: './src/index.pug',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
