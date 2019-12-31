@@ -5,11 +5,13 @@ const path = require('path');
 
 module.exports = {
   mode: 'none',
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    route2: './src/route2/route2.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    chunkFilename: '[id].chunk.js',
+    filename: '[name].[contenthash].js',
   },
   module: {
     rules: [
@@ -46,14 +48,23 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Basic Webpack Starter',
       filename: 'index.html',
+      chunks: ['index'],
       template: './src/index.pug',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Route 2',
+      filename: 'route2.html',
+      chunks: ['route2'],
+      template: './src/route2/index.pug',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: '[name].[contenthash].css',
     }),
     new HtmlInlineCSSWebpackPlugin(),
   ],
+  optimization: {
+    runtimeChunk: 'single',
+  },
 };
