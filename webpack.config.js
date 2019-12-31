@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const path = require('path');
+const webpackAssets = require('./webpack.assets');
 
 module.exports = {
   mode: 'none',
@@ -45,18 +45,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Basic Webpack Starter',
-      filename: 'index.html',
-      chunks: ['index'],
-      template: './src/index.pug',
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Route 2',
-      filename: 'route2.html',
-      chunks: ['route2'],
-      template: './src/route2/index.pug',
-    }),
+    ...webpackAssets.generateHTMLConfig(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
