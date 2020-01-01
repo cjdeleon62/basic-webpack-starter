@@ -50,6 +50,7 @@ module.exports = {
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
     new HtmlInlineCSSWebpackPlugin(),
   ],

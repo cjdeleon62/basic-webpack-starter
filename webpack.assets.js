@@ -7,7 +7,7 @@ const htmlRoutes = [
   },
   {
     name: 'route2',
-    path: 'route2/index.pug',
+    path: 'route2/index-route2.pug',
   },
 ];
 
@@ -16,7 +16,7 @@ const generateHTMLConfig = () => (
     new HtmlWebpackPlugin({
       title: route.name,
       filename: `${route.name}.html`,
-      chunks: route.name,
+      chunks: ['runtime', `${route.name}`],
       template: `src/${route.path}`,
     })
   ))
